@@ -1,0 +1,42 @@
+%h3
+  = fa_icon 'users'
+  Usuarios
+.row
+  .col-sm-8
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th
+            = fa_icon 'envelope-o'
+            Email
+          %th
+            = fa_icon 'key'
+            ID Acceso
+          %th
+            = fa_icon 'user'
+            Nombre de Usuario
+          %th
+            = fa_icon 'sitemap'
+            Rol
+          %th Acciones
+
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.email.downcase
+            %td= user.access_id
+            %td= user.username.titleize
+            %td= Role.find(user.role_id).title.titleize
+            %td.centered
+              =link_to user, { :title => 'Detalles' } do
+                = fa_icon 'bars', class: "text-primary"
+              |
+              = link_to edit_user_path(user), { :title => 'Editar' } do
+                = fa_icon 'edit', class: "text-success"
+              |
+              = link_to user, { :method => :delete, :title => 'Borrar' }, :data => { :confirm => 'Are you sure?' } do
+                = fa_icon 'eraser', class: "text-danger"
+%br
+= link_to new_user_path, :class => "btn btn-primary" do
+  Nuevo Usuario
+  = fa_icon 'plus', :class => 'text-success'

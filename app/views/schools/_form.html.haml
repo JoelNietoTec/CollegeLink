@@ -1,0 +1,71 @@
+= form_for @school, :html => {:class => "form-horizontal well col-md-8"} do |f|
+  - if @school.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@school.errors.count, "error")} prohibited this school from being saved:"
+      %ul
+        - @school.errors.full_messages.each do |msg|
+          %li= msg
+
+  %fieldset
+    %legend
+      Datos del Colegio
+    .field.form-group
+      = f.label :name, "Nombre", :class => "control-label col-lg-2"
+      .col-lg-7
+        = f.text_field :name, { :class => "form-control input-sm", :placeholder => "Nombre" }
+    .field.form-group
+      = f.label :abbreviation, "Siglas", :class => "control-label col-lg-2"
+      .col-lg-3
+        = f.text_field :abbreviation, { :class => "form-control input-sm", :placeholder => "Siglas" }
+    .field.form-group
+      = f.label :motto, "Lema", :class => "control-label col-lg-2"
+      .col-lg-7
+        = f.text_field :motto, { :class => "form-control input-sm", :placeholder => "Lema" }
+    .field.form-group
+      = f.label :principal, "Director", :class => "control-label col-lg-2"
+      .col-lg-7
+        = f.text_field :principal, { :class => "form-control input-sm", :placeholder => "Director" }
+    .field.form-group
+      = f.label :email, :class => "control-label col-lg-2"
+      .col-lg-7
+        = f.email_field :email, {:class => "form-control input-sm", :placeholder => "Correo Electrónico"}
+    .field.form-group
+      = f.label :phones, "Teléfonos", :class => "control-label col-lg-2"
+      .col-lg-5
+        = f.text_field :phones, {:class => "form-control input-sm", :placeholder => "Teléfonos"}
+    .field.form-group
+      = f.label :school_type_id, "Tipo Escuela", :class => "control-label col-lg-2"
+      .col-lg-5
+        = f.collection_select :school_type_id, SchoolType.all, :id, :name, {}, :class => "form-control input-sm"
+    .field.form-group
+      = f.label :province_id, "Provincia", :class => "control-label col-lg-2"
+      .col-lg-5
+        = f.collection_select :province_id, Province.all, :id, :name, {}, { :id => "province_select", :class => "form-control input-sm" }
+    .field.form-group
+      = f.label :district_id, "Distrito", :class => "control-label col-lg-2"
+      .col-lg-5
+        = f.grouped_collection_select :district_id, Province.all, :districts, :id, :id, :name, {}, { :id => "district_select", :class => "form-control input-sm" }
+    .field.form-group
+      = f.label :township_id, "Corregimiento", :class => "control-label col-lg-2"
+      .col-lg-5
+        = f.grouped_collection_select :township_id, District.all, :townships, :id, :id, :title, {}, { :id => "township_select", :class => "form-control input-sm" }
+    .field.form-group
+      = f.label :neighbourhood, "Barrio", :class => "control-label col-lg-2"
+      .col-lg-5
+        = f.text_field :neighbourhood, { :class => "form-control input-sm", :placeholder => "Barrio" }
+    .field.form-group
+      = f.label :street, "Calle", :class => "control-label col-lg-2"
+      .col-lg-3
+        = f.text_field :street, { :class => "form-control input-sm", :placeholder => "Calle" }
+    .field.form-group
+      = f.label :building, "Edificio", :class => "control-label col-lg-2"
+      .col-lg-4
+        = f.text_field :building, { :class => "form-control input-sm", :placeholder => "Edificio" }
+    .field.form-group
+      = f.label :active, :class => "control-label col-lg-2"
+      .col-lg-7
+        = f.check_box :active
+    .actions
+      = f.button(type: "submit", class: "btn btn-sm btn-primary") do
+        Guardar
+        = fa_icon 'save'

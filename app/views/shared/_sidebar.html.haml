@@ -1,0 +1,20 @@
+#sidebar-wrapper
+  %ul.sidebar-nav
+    %li
+      - if controller_name == 'schools'
+        = link_to schools_path, :class=> "selected" do
+          = fa_icon "university"
+          Colegios
+      - else
+        = link_to schools_path do
+          = fa_icon "university"
+          Colegios
+    %li
+      - if controller_name == 'users'
+        = link_to users_path, :class=> "selected" do
+          = fa_icon "users"
+          Usuarios
+      - else
+        = link_to users_path do
+          = fa_icon "users"
+          Usuarios

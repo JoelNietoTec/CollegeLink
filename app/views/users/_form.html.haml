@@ -1,0 +1,37 @@
+= form_for @user, :html => {:class => "form-horizontal well col-md-8"} do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+  %fieldset
+    %legend Datos de Usuario
+    .field.form-group
+      = f.label :email, :class => "control-label col-lg-3"
+      .col-lg-7
+        = f.text_field :email, { :class => "form-control input-sm "}
+    .field.form-group
+      = f.label :access_id, "ID de Acceso", :class => "control-label col-lg-3"
+      .col-lg-7
+        = f.text_field :access_id, { :class => "form-control input-sm "}
+    .field.form-group
+      = f.label :username, "Nombre de Usuario", :class => "control-label col-lg-3"
+      .col-lg-7
+        = f.text_field :username, { :class => "form-control input-sm "}
+    .field.form-group
+      = f.label :password, "Contraseña", :class => "control-label col-lg-3"
+      .col-lg-7
+        = f.password_field :password, { :class => "form-control input-sm "}
+    .field.form-group
+      = f.label :password_confirmation, "Confirmar Contraseña", :class => "control-label col-lg-3"
+      .col-lg-7
+        = f.password_field :password_confirmation, { :class => "form-control input-sm " }
+    .field.form-group
+      = f.label :role_id, :class => "control-label col-lg-3"
+      .col-lg-7
+        = f.collection_select :role_id, Role.all, :id, :title, {},  { :class => "form-control input-sm "}
+    .actions
+      = f.button(type: "submit", class: "btn btn-sm btn-primary") do
+        Guardar
+        = fa_icon 'save'

@@ -1,0 +1,1 @@
+json.extract! @school, :id, :name, :abbreviation, :motto, :principal, :email, :phones, :school_type_id, :province_id, :district_id, :township_id, :neighbourhood, :street, :building, :active, :created_at, :updated_at

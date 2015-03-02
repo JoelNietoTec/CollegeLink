@@ -1,0 +1,21 @@
+.jumbotron.col-lg-8.center-block#welcome-panel
+  %h1
+    CollegeLink
+  %p.text-primary Gestor de Colegios
+  %br
+  = form_for :sessions, :url=> "sessions", :html=> {:class=> "form-horizontal"} do |f|
+    .col-lg-5
+      = f.text_field :email, {:class=> "form-control", :placeholder=>"Email o ID de Acceso"}
+    .col-lg-5
+      = f.password_field :password, {:class=> "form-control ", :placeholder => "Contraseña"}
+    .col-lg-2
+      = button_tag(type: 'submit', class: "btn btn-primary btn-block") do
+        Entrar
+        = fa_icon 'arrow-right'
+  %br
+  %br
+  %br
+  %p
+    No tiene cuenta?
+    \
+    = link_to "Registrarse", new_user_path

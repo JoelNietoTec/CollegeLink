@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  abbreviation: MyString
+  motto: MyString
+  principal: MyString
+  email: MyString
+  phones: MyString
+  school_type_id: 1
+  province_id: 1
+  district_id: 1
+  township_id: 1
+  neighbourhood: MyString
+  street: MyString
+  building: MyString
+  active: false
+
+two:
+  name: MyString
+  abbreviation: MyString
+  motto: MyString
+  principal: MyString
+  email: MyString
+  phones: MyString
+  school_type_id: 1
+  province_id: 1
+  district_id: 1
+  township_id: 1
+  neighbourhood: MyString
+  street: MyString
+  building: MyString
+  active: false

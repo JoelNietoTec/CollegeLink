@@ -1,0 +1,46 @@
+%h3
+  = fa_icon 'university'
+  Colegios
+
+.row
+  .col-lg-10
+    %table.table.table-condensed.table-hover.table-bordered#datagrid
+      %thead
+        %tr
+          %th Nombre
+          %th Siglas
+          %th Email
+          %th Teléfonos
+          %th Tipo Colegio
+          %th Barrio
+          %th Activo
+          %th Acciones
+      %tbody
+        - @schools.each do |school|
+          %tr
+            %td= school.name
+            %td= school.abbreviation
+            %td= school.email
+            %td= school.phones
+            %td= SchoolType.find(school.school_type_id).name
+            %td= school.neighbourhood
+            %td.centered
+              - if school.active
+                = fa_icon 'check', class: 'text-success'
+              - else
+                = fa_icon 'times', class: 'text-danger'
+            %td.centered
+              =link_to school, { :title => 'Detalles' } do
+                = fa_icon 'bars', class: "text-primary"
+              |
+              = link_to edit_school_path(school), { :title => 'Editar' } do
+                = fa_icon 'edit', class: "text-success"
+              |
+              = link_to school, { :method => :delete, :title => 'Borrar', "data-toggle" => "tooltip" }, :data => { :confirm => 'Are you sure?' } do
+                = fa_icon 'eraser', class: "text-danger"
+
+%br
+
+= link_to new_school_path, :class => "btn btn-primary" do
+  Nuevo Colegio
+  = fa_icon 'plus', class: 'text-success'
